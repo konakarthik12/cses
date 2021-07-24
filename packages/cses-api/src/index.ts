@@ -144,6 +144,8 @@ export default class CSES {
     }
 
     async getSubmitResults(result_id: number): Promise<Result[]> {
+        //TODO: errors
+
         const {data} = await this.client.get<string>('problemset/result/' + result_id);
         const results: Result[] = [];
         const $root = $(data);
