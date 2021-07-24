@@ -1,0 +1,33 @@
+{
+  "name": "cses-api",
+  "version": "1.0.10",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "dev": " tsc --outDir ../cses-cli/node_modules/cses-api/dist"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.10",
+    "cookie": "^0.4.1",
+    "form-data": "^4.0.0",
+    "fs-extra": "^10.0.0"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.2.62",
+    "@types/cookie": "^0.4.0",
+    "@types/fs-extra": "^9.0.11",
+    "@types/node": "^15.12.4",
+    "execa": "^5.1.1",
+    "pandoc-binary": "^1.0.1",
+    "ts-node": "^10.0.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.4"
+  }
+}
