@@ -9,8 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build",
-    "dev": " tsc --outDir ../cses-cli/node_modules/cses-api/dist"
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "axios": "^0.21.1",

@@ -81,7 +81,7 @@ async function resultsList(results) {
         }
         terminal_utils_1.term('\n');
     }
-    terminal_utils_1.term(symbols_1.box.left);
+    terminal_utils_1.term(symbols_1.box.bottomLeft);
     for (let j = 0; j < rows[0].length; j++) {
         terminal_utils_1.term(''.padEnd(columnWidth[j], symbols_1.box.bottom));
         if (j == rows[0].length - 1)
