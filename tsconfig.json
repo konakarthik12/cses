@@ -7,12 +7,14 @@
     ],
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "declaration": true,
-    "outDir": "dist"
+    "noEmit": true,
+    "baseUrl": "./packages",
+    "paths": {
+      "cses-api": [
+        "cses-api/src/"
+      ]
+    }
   },
-  "include": [
-    "src"
-  ],
   "ts-node": {
     "transpileOnly": true,
     "transpiler": "ts-node/transpilers/swc-experimental"

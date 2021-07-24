@@ -7,11 +7,10 @@
     "cses": "dist/index.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf dist && tsc --project tsconfig.prod.json",
     "prepublishOnly": "npm run build",
     "cses": "ts-node src/index.ts",
     "dev": "tsnd  --respawn src/index.ts",
-    "start": "ts-node",
     "rec": "ts-node demo/demo.ts"
   },
   "devDependencies": {
@@ -37,5 +36,6 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "gitHead": "dd9ec7465a6b47fa05c194ce14792d2f799bf7b8"
 }
