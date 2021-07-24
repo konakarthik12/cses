@@ -1,20 +1,3 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2020",
-    "lib": [
-      "es2020"
-    ],
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "declaration": true,
-    "outDir": "dist"
-  },
-  "include": [
-    "src"
-  ],
-  "ts-node": {
-    "transpileOnly": true,
-    "transpiler": "ts-node/transpilers/swc-experimental"
-  }
+  "extends": "../../tsconfig.json"
 }
