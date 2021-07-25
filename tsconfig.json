@@ -7,7 +7,6 @@
     ],
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "noEmit": true,
     "baseUrl": "./packages",
     "paths": {
       "cses-api": [

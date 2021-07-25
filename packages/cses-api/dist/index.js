@@ -138,6 +138,7 @@ class CSES {
         return percent / 100;
     }
     async getSubmitResults(result_id) {
+        //TODO: errors
         const { data } = await this.client.get('problemset/result/' + result_id);
         const results = [];
         const $root = cheerio_1.default(data);
