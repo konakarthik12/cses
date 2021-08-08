@@ -16,6 +16,5 @@ async function status() {
     const status = await cses.getStatus(config.user.id);
     const tableData = Object.entries(status);
     for (const [key, value] of tableData) term.cyan(`${key}: `)(value)('\n')
-
 }
 
