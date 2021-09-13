@@ -36,6 +36,7 @@ export class Tester extends EventEmitter {
         } catch (e) {
             term.error("Stopped testing -- Compilation failed\n");
             term.error(e.message)
+            term('\n')
         }
 
     }

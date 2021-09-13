@@ -27,7 +27,8 @@ async function test(id: number) {
     tester.on('failed', async (test, err) => {
         // throw 'what';
         term.error.red(`\nTest case #${test.index} failed\n`)
-        if (err) term.error.red(err)('\n')
+        if(err) term.error.red(err);
+        term('\n')
         test.saveData("failed")
         process.exit();
     })
