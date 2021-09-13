@@ -1,6 +1,6 @@
 {
   "name": "cses-cli",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "license": "MIT",
   "homepage": "https://github.com/konakarthik12/cses-cli",
   "bin": {
