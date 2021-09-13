@@ -50,9 +50,9 @@ export class TestCase {
     }
 
     saveData(path: string) {
-        writeFileSync(`${path}.in`, this.inData);
-        writeFileSync(`${path}.out`, this.outData);
-        writeFileSync(`${path}.ans`, this.ansData);
+        writeFileSync(`${path}.in`, this.inData ?? '');
+        writeFileSync(`${path}.out`, this.outData ?? '');
+        writeFileSync(`${path}.ans`, this.ansData  ?? '');
 
     }
 }
