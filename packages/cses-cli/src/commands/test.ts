@@ -1,6 +1,7 @@
 import {program} from "commander";
 import {Tester} from "../tester/tester";
 import {term} from "../utils/terminal/terminal_utils";
+import {log} from "../index";
 
 program
     .command('test [id]')
@@ -28,7 +29,7 @@ async function test(id: number) {
         // throw 'what';
         term.error.red(`\nTest case #${test.index} failed\n`)
         if(err) term.error.red(err);
-        term('\n')
+        term.noFormat('\n')
         test.saveData("failed")
         process.exit();
     })
