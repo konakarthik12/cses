@@ -1,7 +1,7 @@
 import {program} from "commander";
-import {SelectorMenu} from "../selector/SelectorMenu";
-import {config} from "../config";
-import {term} from "../utils/terminal/terminal_utils";
+import {SelectorMenu} from "../selector/SelectorMenu.js";
+import {config} from "../config.js";
+import {term} from "../utils/terminal/terminal_utils.js";
 import CSES from "cses-api";
 
 

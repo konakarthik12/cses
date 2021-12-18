@@ -3,6 +3,7 @@
   "version": "2.0.6",
   "license": "MIT",
   "homepage": "https://github.com/konakarthik12/cses-cli",
+  "type": "module",
   "bin": {
     "cses": "dist/index.js"
   },

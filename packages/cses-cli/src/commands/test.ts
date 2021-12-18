@@ -1,6 +1,7 @@
 import {program} from "commander";
-import {Tester} from "../tester/tester";
-import {term} from "../utils/terminal/terminal_utils";
+import {Tester} from "../tester/tester.js";
+import {term} from "../utils/terminal/terminal_utils.js";
+import {TestCase} from "../tester/test_case.js";
 
 program
     .command('test [id]')
@@ -24,33 +25,39 @@ async function test(id: number) {
     // term(tick+"  ")
     // const curProblem =
     let tester = new Tester();
-    tester.on('failed', async (test, err) => {
-        // throw 'what';
-        term.error.red(`\nTest case #${test.index} failed\n`)
-        if(err) term.error.red(err);
-        term.noFormat('\n')
-        test.saveData("failed")
-        process.exit();
-    })
-    console.log("Loading Test Cases...")
+
+    term("Loading Test Cases...\n")
     await tester.init();
     await tester.compile();
 
-    console.log("Executing...")
+    term("Executing...\n")
 
-    const progressBar = term.progressBar({
-        width: 50,
-        title: `${tester.casesDone} cases executed`,
-        titleSize: 20,
-        percent: true
-    });
-    tester.on('finish', () => {
-        progressBar.update({
-            progress: tester.casesDone / tester.cases.length,
-            title: `${tester.casesDone} cases executed`
-        })
-    })
-    await tester.run();
-    term("\nAll cases passed\n")
+    /*    const progressBar = term.progressBar({
+            width: 50,
+            title: `${tester.casesDone} cases executed`,
+            titleSize: 20,
+            percent: true
+        });
+        tester.on('finish', () => {
+            progressBar.update({
+                progress: tester.casesDone / tester.cases.length,
+                title: `${tester.casesDone} cases executed`
+            })
+        })*/
+    try {
+        await tester.run();
+        term("\nAll cases passed\n")
+    } catch (e) {
+        if(e instanceof TestCase){
+            term.error.red(`\nTest case #${e.index} failed\n`)
+
+            e.saveData("failed")
+        } else {
+            term.error.red(e);
+        }
+        term.noFormat('\n')
+
+    }
+
 }
 

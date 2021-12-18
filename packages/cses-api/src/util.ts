@@ -1,4 +1,5 @@
 import {ReadStream} from "fs";
+import { createRequire } from "module";
 
 export type Rec<T> = Record<string, T>
 export type Tokens = { php: string, csrf: string }
@@ -42,4 +43,17 @@ export function extractLast(str: string, afterSubstring: string, beforeString: s
 export function isNumber(num: any) {
     return num == +num;
 }
+const require = createRequire(import.meta.url)
+const commonJsModule = require("fs-extra")
+import {fileURLToPath} from 'url';
+import path from 'path';
+
+export function dirname(base, ...paths) {
+    return path.join(path.dirname(fileURLToPath(base)), ...paths);
+}
+
+export const {mkdirs} = commonJsModule
+export const {readFile} = commonJsModule
+export const {writeFile} = commonJsModule
+export const {readJsonSync} = commonJsModule
 

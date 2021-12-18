@@ -1,11 +1,11 @@
 import {program} from "commander";
-import {config} from "../config";
+import {config} from "../config.js";
 
-import {term} from "../utils/terminal/terminal_utils";
-import {askQuestion} from "../utils/terminal/Question";
-import {ensureLoggedIn} from "./login";
+import {term} from "../utils/terminal/terminal_utils.js";
+import {askQuestion} from "../utils/terminal/Question.js";
+import {ensureLoggedIn} from "./login.js";
 import path from "path";
-import {selectOption} from "../utils/terminal/Options";
+import {selectOption} from "../utils/terminal/Options.js";
 
 export const languages = [
     'Assembly', 'C++', 'Haskell', 'Java', 'Node.js',

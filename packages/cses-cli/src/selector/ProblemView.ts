@@ -1,9 +1,9 @@
 import {Rec} from "cses-api";
 
 import CSES from "cses-api";
-import {Element} from "../utils/terminal/Element";
-import {term} from "../utils/terminal/terminal_utils";
-import {TreeList} from "./TreeList";
+import {Element} from "../utils/terminal/Element.js";
+import {term} from "../utils/terminal/terminal_utils.js";
+import {TreeList} from "./TreeList.js";
 
 let lastProblem;
 

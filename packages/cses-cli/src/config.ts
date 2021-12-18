@@ -1,11 +1,13 @@
-import {mkdirsSync, readJsonSync, writeJsonSync} from "fs-extra";
 import path from "path";
 import {homedir} from "os";
 import {User} from "cses-api";
+import {mkdirsSync, readJsonSync, writeJsonSync} from "./utils/utils.js";
 
 let configPath = path.join(homedir(), '.config/cses/config.json');
 mkdirsSync(path.dirname(configPath))
-
+process.on("exit", () => {
+    writeJsonSync(configPath, target);
+})
 interface Config {
 
     commands: Partial<{ compile: string, run: string }>
@@ -32,7 +34,8 @@ export const proxy: ProxyHandler<Config> = {
     set(target: Config, p: string | symbol, value: any): boolean {
         target[p] = value;
         writeJsonSync(configPath, target);
-        return true;
+        process.exit();
+        return false;
     },
     deleteProperty(target: Config, p: string | symbol): boolean {
         delete target[p];
@@ -41,7 +44,7 @@ export const proxy: ProxyHandler<Config> = {
     }
 
 };
-process.on("exit", () => writeJsonSync(configPath, target))
+
 
 export const config: Partial<Config> = new Proxy(target, proxy);
 

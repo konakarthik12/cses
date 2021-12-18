@@ -1,5 +1,5 @@
-import {term} from "./terminal_utils";
-import {box} from "../symbols";
+import {term} from "./terminal_utils.js";
+import {box} from "../symbols.js";
 
 export function drawBox(x: number, y: number, width: number, height: number, title = '', right = '') {
     const x1 = x;

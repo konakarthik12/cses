@@ -1,27 +1,38 @@
-#!/usr/bin/env node
-import {readdirSync} from "fs-extra";
-// import "./commands/setup"
-// import "./commands/login"
-// import "./commands/status"
-// import "./commands/test"
-// import "./commands/select"
-import {term} from "./utils/terminal/terminal_utils";
-import {program} from "commander"
-import path from "path";
-// process.stdin.setRawMode(true);
+#!/usr/bin/env -S node --experimental-json-modules --no-warnings
+import {program} from "commander";
+import {readdirSync} from "fs";
 
+// import "./commands/select.js"
+import {term} from "./utils/terminal/terminal_utils.js";
+import {dirname} from "./utils/utils.js";
+import {proxy} from "./config";
 
-if (process.env["INIT_CWD"]) process.chdir(process.env["INIT_CWD"]);
-readdirSync(path.join(__dirname, 'commands')).map(it => path.join(__dirname, 'commands', it)).forEach(require);
-
-let exit = () => {
+let exit = (eventType?) => {
     term.hideCursor(false);
-    process.exit(0);
+    if (eventType != 'exit') process.exit();
 };
-[`exit`, `SIGINT`, `SIGUSR1`, `SIGUSR2`, `uncaughtException`, `SIGTERM`].forEach((eventType) => {
-    process.on(eventType, exit);
-})
 term.on('key', key => {
     if (key === 'CTRL_C') exit();
-})
-program.parseAsync().catch(console.error).finally(exit);
+});
+if (process.env["INIT_CWD"]) process.chdir(process.env["INIT_CWD"]);
+let commandList = readdirSync(dirname(import.meta.url, 'commands'));
+const commands = commandList.map(it => import(dirname(import.meta.url, 'commands', it)));
+
+/*[`exit`, `SIGINT`, `SIGUSR1`, `SIGUSR2`, `uncaughtException`, `SIGTERM`].forEach((eventType) => {
+
+    process.on(eventType, () => exit(eventType));
+});*/
+
+(async () => {
+    await Promise.all(commands);
+
+    try {
+        await program.parseAsync()
+    } catch (e) {
+        console.log("Failure")
+        console.error(e)
+    } finally {
+        exit();
+    }
+})();
+

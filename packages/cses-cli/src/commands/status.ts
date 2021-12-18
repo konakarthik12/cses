@@ -1,8 +1,8 @@
 import {program} from "commander";
-import {config} from "../config";
+import {config} from "../config.js";
 import CSES from "cses-api"
-import {ensureLoggedIn} from "./login";
-import {term} from "../utils/terminal/terminal_utils";
+import {ensureLoggedIn} from "./login.js";
+import {term} from "../utils/terminal/terminal_utils.js";
 
 
 program

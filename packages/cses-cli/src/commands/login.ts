@@ -1,11 +1,12 @@
 import {program} from "commander";
-import {config} from "../config";
+import {config} from "../config.js";
 
 import CSES from "cses-api"
-import {askQuestion} from "../utils/terminal/Question";
-import {term} from "../utils/terminal/terminal_utils";
+import {askQuestion} from "../utils/terminal/Question.js";
+import {term} from "../utils/terminal/terminal_utils.js";
 
 program
+
     .command('login')
     .description('store cses username and password for login')
     .action(login);

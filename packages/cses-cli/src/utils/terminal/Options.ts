@@ -1,4 +1,4 @@
-import {term} from "./terminal_utils";
+import {term} from "./terminal_utils.js";
 
 export async function selectOption(question: string, options: string[], select?: string) {
     if (question) term.cyan(question);

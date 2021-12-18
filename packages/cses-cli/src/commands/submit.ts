@@ -1,11 +1,11 @@
 import {program} from "commander";
-import {config} from "../config";
+import {config} from "../config.js";
 import CSES, {Result} from "cses-api";
-import {ensureLoggedIn} from "./login";
-import {term} from "../utils/terminal/terminal_utils";
+import {ensureLoggedIn} from "./login.js";
+import {term} from "../utils/terminal/terminal_utils.js";
 import sleep from "sleep-promise";
 import {createReadStream} from "fs";
-import {box} from "../utils/symbols";
+import {box} from "../utils/symbols.js";
 
 program
     .command('submit')

@@ -1,4 +1,4 @@
-import {List} from "./List";
+import {List} from "./List.js";
 
 export class PageList<K> extends List<K> {
 

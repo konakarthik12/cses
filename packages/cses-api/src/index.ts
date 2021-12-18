@@ -1,9 +1,24 @@
-import {Client} from "./client";
-import {extract, isNumber, ProblemOverview, ProblemSet, Rec, Result, Status, SubmitOptions, Tokens, User} from "./util";
+import {Client} from "./client.js";
+import {
+    extract,
+    isNumber,
+    ProblemOverview,
+    ProblemSet,
+    Rec,
+    Result,
+    Status,
+    SubmitOptions,
+    Tokens,
+    User
+} from "./util.js";
 import cookie from "cookie";
-import $, {Cheerio, Element} from "cheerio";
+import {Cheerio, Element} from "cheerio";
 
-import problemSet from "./dataset/dataset.json";
+import {createRequire} from "module";
+import problemSet from './dataset/dataset.json' assert {type: "json"};
+
+const require = createRequire(import.meta.url);
+const $ = require('cheerio').default;
 
 const statusUrL = "/ajax/get_status.php?entry=";
 
@@ -101,7 +116,6 @@ export default class CSES {
         for (let section in problemSet) {
             problemSet[section].forEach((task, index) => task.status = statuses[section][index])
         }
-
         return problemSet;
     }
 
@@ -138,7 +152,7 @@ export default class CSES {
     async getSubmitStatus(submit_id: number): Promise<number | "READY" | "COMPILE ERROR"> {
         const {data} = await this.client.get<string>(statusUrL + submit_id);
         if (data == "READY" || data == "COMPILE ERROR") return data;
-        if(data=="PENDING") return 0;
+        if (data == "PENDING") return 0;
         const percent = extract(data, "TESTING ", "%")
         return percent / 100;
     }
@@ -176,5 +190,4 @@ export default class CSES {
 }
 
 
-export {ProblemOverview} from "./util"
-export * from "./util"
+export * from "./util.js"

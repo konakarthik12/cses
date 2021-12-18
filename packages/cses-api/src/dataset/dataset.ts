@@ -1,7 +1,7 @@
 import * as tokens from "./tokens.json";
 import {writeJSON} from "fs-extra";
 import $ from "cheerio";
-import CSES, {extractLast, ProblemSet, Rec} from "../index";
+import CSES, {extractLast, ProblemSet, Rec} from "../index.js";
 import {htmlToText} from "./pandoc";
 import {join} from "path";
 
@@ -9,7 +9,6 @@ let count = 0;
 const cses = new CSES(tokens);
 
 async function getProblemSet(): Promise<ProblemSet> {
-    let cases = await getCases(1068);
     return await cses.forEachProblem(async $task => {
         let $link = $task.find('a');
         let $detail = $task.find(".detail");

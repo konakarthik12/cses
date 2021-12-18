@@ -1,7 +1,7 @@
-import {terminal} from "terminal-kit";
+import terminalKit from "terminal-kit";
 
-terminal.grabInput({});
-export const term = terminal
+terminalKit.terminal.grabInput({});
+export const term = terminalKit.terminal
 
 
 

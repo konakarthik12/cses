@@ -1,9 +1,8 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 import FormData from "form-data";
-import {Rec, Tokens} from "./util";
+import {mkdirs, Rec, Tokens, readFile, writeFile, dirname} from "./util.js";
 import cookie from "cookie";
 import path from "path";
-import {existsSync, mkdirs, readFile, writeFile} from "fs-extra";
 
 axios.defaults.baseURL = 'https://cses.fi';
 
@@ -28,19 +27,24 @@ export class Client {
         return this.api.post(url, form, {headers: form.getHeaders()})
     }
 
-    async cacheGet(url: string): Promise<string> {
-        let filePath = path.join(__dirname, '../cache', url + ".cache");
-        if (existsSync(filePath)) {
-            return readFile(filePath, 'utf8')
-        } else {
-            await mkdirs(path.dirname(filePath));
-            const response = (await this.get(url));
-            // response
-            await writeFile(filePath, response.data.toString(), 'utf8');
-            return response.data;
-        }
-    }
+    cacheGet(url: string): Promise<string> {
+        let filePath = dirname(import.meta.url, '../cache', url + ".cache");
+        return new Promise<string>((res, rej) => {
+            readFile(filePath, 'utf8', async (err, data) => {
+                if (err) {
+                    await mkdirs(path.dirname(filePath));
 
+                    const response = await this.get(url);
+                    // response
+                    await writeFile(filePath, response.data.toString(), 'utf8');
+                    res(response.data);
+                } else {
+                    res(data)
+                }
+
+            });
+        });
+    }
 
 }
 
