@@ -32,7 +32,7 @@ async function test(id: number) {
 
     term("Executing...\n")
 
-    /*    const progressBar = term.progressBar({
+        const progressBar = term.progressBar({
             width: 50,
             title: `${tester.casesDone} cases executed`,
             titleSize: 20,
@@ -43,7 +43,7 @@ async function test(id: number) {
                 progress: tester.casesDone / tester.cases.length,
                 title: `${tester.casesDone} cases executed`
             })
-        })*/
+        })
     try {
         await tester.run();
         term("\nAll cases passed\n")
