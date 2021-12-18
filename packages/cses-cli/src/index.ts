@@ -5,7 +5,6 @@ import {readdirSync} from "fs";
 // import "./commands/select.js"
 import {term} from "./utils/terminal/terminal_utils.js";
 import {dirname} from "./utils/utils.js";
-import {proxy} from "./config";
 
 let exit = (eventType?) => {
     term.hideCursor(false);

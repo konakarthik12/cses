@@ -34,7 +34,6 @@ export const proxy: ProxyHandler<Config> = {
     set(target: Config, p: string | symbol, value: any): boolean {
         target[p] = value;
         writeJsonSync(configPath, target);
-        process.exit();
         return false;
     },
     deleteProperty(target: Config, p: string | symbol): boolean {

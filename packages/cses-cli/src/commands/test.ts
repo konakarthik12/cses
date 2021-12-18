@@ -32,25 +32,24 @@ async function test(id: number) {
 
     term("Executing...\n")
 
-        const progressBar = term.progressBar({
-            width: 50,
-            title: `${tester.casesDone} cases executed`,
-            titleSize: 20,
-            percent: true
-        });
-        tester.on('finish', () => {
-            progressBar.update({
-                progress: tester.casesDone / tester.cases.length,
-                title: `${tester.casesDone} cases executed`
-            })
+    const progressBar = term.progressBar({
+        width: 50,
+        title: `${tester.casesDone} cases executed`,
+        titleSize: 20,
+        percent: true
+    });
+    tester.on('finish', () => {
+        progressBar.update({
+            progress: tester.casesDone / tester.cases.length,
+            title: `${tester.casesDone} cases executed`
         })
+    })
     try {
         await tester.run();
         term("\nAll cases passed\n")
     } catch (e) {
-        if(e instanceof TestCase){
+        if (e instanceof TestCase) {
             term.error.red(`\nTest case #${e.index} failed\n`)
-
             e.saveData("failed")
         } else {
             term.error.red(e);
