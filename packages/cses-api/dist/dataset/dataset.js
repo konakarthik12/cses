@@ -47,14 +47,14 @@ async function getTaskDetails(problemId) {
     const $root = cheerio_1.default.load(data);
     const $content = $root(".content");
     let $constraints = $content.find(".task-constraints");
-    const limits = $constraints.find("li").map((i, el) => cheerio_1.default(el).contents().last().text().trim()).toArray();
+    const limits = $constraints.find("li").map((i, el) => (0, cheerio_1.default)(el).contents().last().text().trim()).toArray();
     let nodes = $content.contents().toArray();
     // @ts-ignore
     const sliceStart = nodes.findIndex(it => it.name == "ul") + 1;
     let key = "Description";
     const body = {};
     for (const elem of nodes.slice(sliceStart)) {
-        let $elem = cheerio_1.default(elem);
+        let $elem = (0, cheerio_1.default)(elem);
         if (!$elem.text().trim())
             continue;
         // @ts-ignore
@@ -69,13 +69,13 @@ async function getTaskDetails(problemId) {
     }
     const details = { limits, body };
     for (const key in details.body) {
-        details.body[key] = await pandoc_1.htmlToText(details.body[key]);
+        details.body[key] = await (0, pandoc_1.htmlToText)(details.body[key]);
     }
     return details;
 }
 async function getCases(problemId) {
     const problem_data = await cses.client.cacheGet(`/problemset/task/${problemId}`);
-    const result_id = index_1.extractLast(problem_data, "/result/", "/");
+    const result_id = (0, index_1.extractLast)(problem_data, "/result/", "/");
     const results_data = await cses.client.cacheGet(`/problemset/result/${result_id}`);
     const $root = cheerio_1.default.load(results_data);
     let testId = 1;
@@ -103,6 +103,6 @@ async function getCases(problemId) {
 }
 async function main() {
     const problemSet = await getProblemSet();
-    await fs_extra_1.writeJSON('dataset.json', problemSet);
+    await (0, fs_extra_1.writeJSON)('dataset.json', problemSet);
 }
 main();

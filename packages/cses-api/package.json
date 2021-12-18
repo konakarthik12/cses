@@ -8,7 +8,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && tsc --paths null",
+    "build": "rimraf dist && tsc",
+    "dataset": "ts-node src/dataset/dataset.ts",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

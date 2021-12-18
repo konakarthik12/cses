@@ -3,11 +3,13 @@ import {writeJSON} from "fs-extra";
 import $ from "cheerio";
 import CSES, {extractLast, ProblemSet, Rec} from "../index";
 import {htmlToText} from "./pandoc";
+import {join} from "path";
 
 let count = 0;
 const cses = new CSES(tokens);
 
 async function getProblemSet(): Promise<ProblemSet> {
+    let cases = await getCases(1068);
     return await cses.forEachProblem(async $task => {
         let $link = $task.find('a');
         let $detail = $task.find(".detail");
@@ -49,7 +51,7 @@ async function getTaskDetails(problemId: number) {
             body[key] += data;
         }
     }
-    const details = {limits, body    }
+    const details = {limits, body}
 
     for (const key in details.body) {
         details.body[key] = await htmlToText(details.body[key])
@@ -91,7 +93,8 @@ async function getCases(problemId: number) {
 
 async function main() {
     const problemSet = await getProblemSet();
-    await writeJSON('dataset.json', problemSet)
+    let filePath = join(__dirname, 'dataset.json');
+    await writeJSON(filePath, problemSet)
 }
 
 main();

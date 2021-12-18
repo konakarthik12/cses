@@ -1,4 +1,4 @@
-import execa from "execa";
+import execa, {execaCommand} from "execa";
 import {config} from "../config";
 import CSES from "cses-api";
 import {TestCase} from "./test_case";
@@ -32,7 +32,7 @@ export class Tester extends EventEmitter {
         if (!config.commands.compile) return;
         term("Compiling...\n")
         try {
-            return await execa.command(config.commands.compile, {stdio: "inherit"});
+            return await execaCommand(config.commands.compile, {stdio: "inherit"});
         } catch (e) {
             term.error("Stopped testing -- Compilation failed\n");
             term.error(e.message)

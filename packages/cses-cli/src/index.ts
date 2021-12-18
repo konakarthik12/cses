@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-export const log = require('why-is-node-running') // should be your first require
 import {readdirSync} from "fs-extra";
 // import "./commands/setup"
 // import "./commands/login"

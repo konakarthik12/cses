@@ -56,7 +56,7 @@ class CSES {
         const { data } = await this.client.get(`/user/${id}`);
         const html = cheerio_1.default.load(data);
         const table = html("table").first().find("td");
-        let info = table.map((i, el) => cheerio_1.default(el).text());
+        let info = table.map((i, el) => (0, cheerio_1.default)(el).text());
         if (info[0] == "Name")
             info = info.slice(0, -2);
         const status = {};
@@ -124,8 +124,8 @@ class CSES {
     }
     async submit(submitOptions) {
         const result = await this.client.submit('/course/send.php', submitOptions);
-        const submit_id = util_1.extract(result.data, statusUrL, '"');
-        if (util_1.isNumber(submit_id))
+        const submit_id = (0, util_1.extract)(result.data, statusUrL, '"');
+        if ((0, util_1.isNumber)(submit_id))
             return submit_id;
     }
     async getSubmitStatus(submit_id) {
@@ -134,15 +134,15 @@ class CSES {
             return data;
         if (data == "PENDING")
             return 0;
-        const percent = util_1.extract(data, "TESTING ", "%");
+        const percent = (0, util_1.extract)(data, "TESTING ", "%");
         return percent / 100;
     }
     async getSubmitResults(result_id) {
         //TODO: errors
         const { data } = await this.client.get('problemset/result/' + result_id);
         const results = [];
-        const $root = cheerio_1.default(data);
-        let elements = cheerio_1.default($root.find("table").get()[1]).find(".verdict").get();
+        const $root = (0, cheerio_1.default)(data);
+        let elements = (0, cheerio_1.default)($root.find("table").get()[1]).find(".verdict").get();
         const verdictStyles = {
             unknown: 'default',
             ac: 'green',
@@ -152,7 +152,7 @@ class CSES {
             mle: 'yellow'
         };
         for (const element of elements) {
-            const $element = cheerio_1.default(element);
+            const $element = (0, cheerio_1.default)(element);
             const color = Object.keys(verdictStyles).find(it => $element.hasClass(it));
             results.push({
                 index: $element.prev().text(),

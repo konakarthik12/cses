@@ -27,14 +27,14 @@ class Client {
     }
     async cacheGet(url) {
         let filePath = path_1.default.join(__dirname, '../cache', url + ".cache");
-        if (fs_extra_1.existsSync(filePath)) {
-            return fs_extra_1.readFile(filePath, 'utf8');
+        if ((0, fs_extra_1.existsSync)(filePath)) {
+            return (0, fs_extra_1.readFile)(filePath, 'utf8');
         }
         else {
-            await fs_extra_1.mkdirs(path_1.default.dirname(filePath));
+            await (0, fs_extra_1.mkdirs)(path_1.default.dirname(filePath));
             const response = (await this.get(url));
             // response
-            await fs_extra_1.writeFile(filePath, response.data.toString(), 'utf8');
+            await (0, fs_extra_1.writeFile)(filePath, response.data.toString(), 'utf8');
             return response.data;
         }
     }

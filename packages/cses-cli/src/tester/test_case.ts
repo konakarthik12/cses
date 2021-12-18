@@ -1,5 +1,5 @@
 import {Tester} from "./tester";
-import execa from "execa";
+import {execaCommand} from "execa";
 import {config} from "../config";
 import {writeFileSync} from "fs";
 
@@ -27,7 +27,7 @@ export class TestCase {
         if (this.status === 'running') return;
         this.status = 'running'
 
-        execa.command(config.commands.run, {input: this.inData}).then(it => {
+        execaCommand(config.commands.run, {input: this.inData}).then(it => {
             this.outData = it.stdout;
             if (this.outData.trim() !== this.ansData.trim()) {
                 this.failed = true;

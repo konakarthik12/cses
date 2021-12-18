@@ -1,7 +1,6 @@
 import {program} from "commander";
 import {Tester} from "../tester/tester";
 import {term} from "../utils/terminal/terminal_utils";
-import {log} from "../index";
 
 program
     .command('test [id]')
