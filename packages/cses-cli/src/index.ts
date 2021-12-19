@@ -1,4 +1,5 @@
-#!/usr/bin/env -S node --experimental-json-modules --no-warnings
+#!/bin/sh
+":" //# comment; exec /usr/bin/env node --experimental-json-modules --no-warnings "$0" "$@"
 import {program} from "commander";
 import {readdirSync} from "fs";
 
