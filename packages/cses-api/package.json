@@ -1,13 +1,12 @@
 {
   "name": "cses-api",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "exports": "./dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "build": "rimraf dist && tsc",
     "dataset": "ts-node src/dataset/dataset.ts",

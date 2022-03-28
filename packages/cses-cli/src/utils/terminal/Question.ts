@@ -1,4 +1,4 @@
-import {term} from "./terminal_utils.js";
+import {term} from "./terminal_utils";
 import {InputFieldOptions} from "terminal-kit/Terminal";
 
 const keyBindings = {
@@ -50,7 +50,7 @@ export async function askQuestion(question: string, default_input?: string, opti
 }
 
 
-// import {term} from "../terminal_utils.js";
+// import {term} from "../terminal_utils";
 // import sleep from "sleep-promise";
 //
 // let input: string = "";

@@ -1,6 +1,6 @@
-import {Element} from "./Element.js";
-import {BorderTexts} from "./Box.js";
-import {term} from "./terminal_utils.js";
+import {Element} from "./Element";
+import {BorderTexts} from "./Box";
+import {term} from "./terminal_utils";
 import {CTerminal} from "terminal-kit/Terminal";
 
 

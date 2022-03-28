@@ -1,7 +1,7 @@
 import path from "path";
 import {homedir} from "os";
 import {User} from "cses-api";
-import {mkdirsSync, readJsonSync, writeJsonSync} from "./utils/utils.js";
+import {mkdirsSync, readJsonSync, writeJsonSync} from "./utils/utils";
 
 let configPath = path.join(homedir(), '.config/cses/config.json');
 mkdirsSync(path.dirname(configPath))
@@ -34,7 +34,7 @@ export const proxy: ProxyHandler<Config> = {
     set(target: Config, p: string | symbol, value: any): boolean {
         target[p] = value;
         writeJsonSync(configPath, target);
-        return false;
+        return true;
     },
     deleteProperty(target: Config, p: string | symbol): boolean {
         delete target[p];

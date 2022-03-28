@@ -1,7 +1,7 @@
 import {program} from "commander";
-import {Tester} from "../tester/tester.js";
-import {term} from "../utils/terminal/terminal_utils.js";
-import {TestCase} from "../tester/test_case.js";
+import {Tester} from "../tester/tester";
+import {term} from "../utils/terminal/terminal_utils";
+import {TestCase} from "../tester/test_case";
 
 program
     .command('test [id]')
@@ -9,7 +9,7 @@ program
     .action(test);
 
 
-async function test(id: number) {
+async function test() {
 
 
     // term("Compiling ");

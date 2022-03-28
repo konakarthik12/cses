@@ -1,9 +1,9 @@
-import { term } from "../utils/terminal/terminal_utils.js";
+import { term } from "../utils/terminal/terminal_utils";
 
-import {TreeList} from "./TreeList.js";
-import {ProblemView} from "./ProblemView.js";
+import {TreeList} from "./TreeList";
+import {ProblemView} from "./ProblemView";
 import CSES, {ProblemOverview} from "cses-api";
-import {config} from "../config.js";
+import {config} from "../config";
 
 
 // const problemSet: ProblemSet = await cses.getProblemSet();

@@ -1,10 +1,9 @@
-import {execaCommand} from "execa";
-import {config} from "../config.js";
+import {config} from "../config";
 import CSES from "cses-api";
-import {TestCase} from "./test_case.js";
+import {TestCase} from "./test_case";
 import EventEmitter from "events";
 import cpuCount from "physical-cpu-count";
-import {term} from "../utils/terminal/terminal_utils.js";
+import {term} from "../utils/terminal/terminal_utils";
 
 export class Tester extends EventEmitter {
     cases: TestCase[] = [];
@@ -17,7 +16,7 @@ export class Tester extends EventEmitter {
     maxParallel: number
     failed: boolean = false
 
-    async init(id?: string | number) {
+    async init() {
         this.on('failed', () => this.failed = true);
         const cses = new CSES(config.user);
         const caseData = await cses.getTestCases(config.selected);
@@ -34,6 +33,8 @@ export class Tester extends EventEmitter {
         if (!config.commands.compile) return;
         term("Compiling...\n")
         try {
+            const execaCommand = (await import('execa')).execaCommand;
+
             return await execaCommand(config.commands.compile, {stdio: "inherit"});
         } catch (e) {
             term.error("Stopped testing -- Compilation failed\n");

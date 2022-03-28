@@ -14,10 +14,7 @@ import {
 import cookie from "cookie";
 import {Cheerio, Element} from "cheerio";
 
-import {createRequire} from "module";
-import problemSet from './dataset/dataset.json' assert {type: "json"};
-
-const require = createRequire(import.meta.url);
+import problemSet from './dataset/dataset.json';
 const $ = require('cheerio').default;
 
 const statusUrL = "/ajax/get_status.php?entry=";
@@ -70,7 +67,7 @@ export default class CSES {
         const table = html("table").first().find("td")
 
         let info = table.map((i, el) => $(el).text());
-        if (info[0] == "Name") info = info.slice(0, -2)
+        if (info[0].includes("Name")) info = info.slice(0, -2)
 
         const status = {};
         for (let i = 0; i < info.length; i += 2) status[info[i]] = info[i + 1]

@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es2020",
     "lib": [
       "es2020"
     ],
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "baseUrl": "./packages",

@@ -1,6 +1,6 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 import FormData from "form-data";
-import {mkdirs, Rec, Tokens, readFile, writeFile, dirname} from "./util.js";
+import {mkdirs, readFile, Rec, Tokens, writeFile} from "./util.js";
 import cookie from "cookie";
 import path from "path";
 
@@ -28,8 +28,8 @@ export class Client {
     }
 
     cacheGet(url: string): Promise<string> {
-        let filePath = dirname(import.meta.url, '../cache', url + ".cache");
-        return new Promise<string>((res, rej) => {
+        let filePath = path.join(__dirname, '../cache', url + ".cache");
+        return new Promise<string>((res) => {
             readFile(filePath, 'utf8', async (err, data) => {
                 if (err) {
                     await mkdirs(path.dirname(filePath));

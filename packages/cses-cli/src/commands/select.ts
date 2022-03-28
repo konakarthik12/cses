@@ -1,8 +1,7 @@
 import {program} from "commander";
-import {SelectorMenu} from "../selector/SelectorMenu.js";
-import {config} from "../config.js";
-import {term} from "../utils/terminal/terminal_utils.js";
-import CSES from "cses-api";
+import {SelectorMenu} from "../selector/SelectorMenu";
+import {config} from "../config";
+import {term} from "../utils/terminal/terminal_utils";
 
 
 program
@@ -15,7 +14,7 @@ async function select() {
     const [section, task] = await menu.selectProblem()
     menu.exit();
     config.selected = task.id;
-    const cses = new CSES(config.user);
+    // const cses = new CSES(config.user);
     //todo: save sample case
     term('Selected problem: ').green(`${section} - ${task.name}\n`)
 

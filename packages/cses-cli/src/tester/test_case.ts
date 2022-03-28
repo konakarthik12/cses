@@ -1,6 +1,5 @@
-import {Tester} from "./tester.js";
-import {execaCommand} from "execa";
-import {config} from "../config.js";
+import {Tester} from "./tester";
+import {config} from "../config";
 import {writeFileSync} from "fs";
 
 export class TestCase {
@@ -26,13 +25,14 @@ export class TestCase {
     }
 
 
-    start() {
+    async start() {
         if (this.tester.failed) {
             this.finish(true)
             return
         }
         if (this.status === 'running') return;
         this.status = 'running'
+        const execaCommand = (await import('execa')).execaCommand;
 
         execaCommand(config.commands.run, {input: this.inData}).then(it => {
             this.outData = it.stdout;

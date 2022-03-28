@@ -1,11 +1,11 @@
 import {program} from "commander";
-import {config} from "../config.js";
+import {config} from "../config";
 import CSES, {Result} from "cses-api";
-import {ensureLoggedIn} from "./login.js";
-import {term} from "../utils/terminal/terminal_utils.js";
+import {ensureLoggedIn} from "./login";
+import {term} from "../utils/terminal/terminal_utils";
 import sleep from "sleep-promise";
 import {createReadStream} from "fs";
-import {box} from "../utils/symbols.js";
+import {box} from "../utils/symbols";
 
 program
     .command('submit')
@@ -57,7 +57,6 @@ async function resultsList(results: Result[]) {
     }
     // let width = columnWidth.reduce((prev, cur) => prev + cur + 1, 0);
 
-    let height = rows.length * 2 + 1;
     // for (let i = 0; i < height; i++) term('\n')
     // term.up(height)
     term(box.topLeft)

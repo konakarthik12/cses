@@ -1,9 +1,9 @@
 import {program} from "commander";
-import {config} from "../config.js";
+import {config} from "../config";
 
 import CSES from "cses-api"
-import {askQuestion} from "../utils/terminal/Question.js";
-import {term} from "../utils/terminal/terminal_utils.js";
+import {askQuestion} from "../utils/terminal/Question";
+import {term} from "../utils/terminal/terminal_utils";
 
 program
 

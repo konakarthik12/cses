@@ -1,7 +1,7 @@
 import EventEmitter from "events";
 
-import {BorderTexts, Box} from "./Box.js";
-import {term} from "./terminal_utils.js";
+import {BorderTexts, Box} from "./Box";
+import {term} from "./terminal_utils";
 
 const keys = {
     UP: 'up',

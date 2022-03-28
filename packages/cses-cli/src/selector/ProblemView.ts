@@ -1,9 +1,9 @@
 import {Rec} from "cses-api";
 
 import CSES from "cses-api";
-import {Element} from "../utils/terminal/Element.js";
-import {term} from "../utils/terminal/terminal_utils.js";
-import {TreeList} from "./TreeList.js";
+import {Element} from "../utils/terminal/Element";
+import {term} from "../utils/terminal/terminal_utils";
+import {TreeList} from "./TreeList";
 
 let lastProblem;
 
@@ -46,7 +46,7 @@ export class ProblemView extends Element {
             this.body = body;
             this.index = 0;
             this.borders({topLeft: title, topRight: limits.join(', ')});
-            await this.drawBody();
+            this.drawBody();
         }
     }
 
@@ -64,7 +64,7 @@ export class ProblemView extends Element {
     }
 
 
-    async drawBody() {
+    drawBody() {
         this.clearBody();
         if (!this.body) return;
         term.moveTo(this.x + 1, this.y + 1)
@@ -79,19 +79,3 @@ export class ProblemView extends Element {
         term.wrap.noFormat(section)('\n')
     }
 }
-
-//
-// async function getPlainProblem(cses: CSES, id: number): Promise<{ title: string, limits: string, body: Rec<string> }> {
-//
-//
-//     let {title, limits, body} = await cses.getProblemDetails(id);
-//     for (const [key, value] of Object.entries(body)) body[key] = await htmlToText(value)
-//     return {
-//         title,
-//         limits: limits.join(', '),
-//         body: body
-//     };
-//
-//
-// }
-

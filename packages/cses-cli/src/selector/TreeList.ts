@@ -1,7 +1,7 @@
-import {PageList} from "../utils/terminal/PageList.js";
+import {PageList} from "../utils/terminal/PageList";
 import {ProblemOverview, ProblemSet} from "cses-api";
 import type {CTerminal} from "terminal-kit/Terminal";
-import { term } from "../utils/terminal/terminal_utils.js";
+import { term } from "../utils/terminal/terminal_utils";
 
 export class TreeList extends PageList<ProblemOverview | string> {
     problemSet: ProblemSet
