@@ -21,7 +21,7 @@
     "node-pty": "^0.10.1",
     "ts-node": "^10.0.0",
     "ts-node-dev": "^1.1.6",
-    "typescript": "^4.3.4"
+    "typescript": "^4.7.0-dev.20220329"
   },
   "dependencies": {
     "commander": "^8.0.0",
