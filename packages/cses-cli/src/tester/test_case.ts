@@ -32,7 +32,8 @@ export class TestCase {
         }
         if (this.status === 'running') return;
         this.status = 'running'
-        const execaCommand = (await import('execa')).execaCommand;
+        const execa = Function('return import("execa")')() as Promise<typeof import('execa')>
+        const execaCommand = (await execa).execaCommand
 
         execaCommand(config.commands.run, {input: this.inData}).then(it => {
             this.outData = it.stdout;
