@@ -33,8 +33,8 @@ export class Tester extends EventEmitter {
         if (!config.commands.compile) return;
         term("Compiling...\n")
         try {
-            const execaCommand = (await import('execa')).execaCommand;
-
+            const execa = Function('return import("execa")')() as Promise<typeof import('execa')>
+            const execaCommand = (await execa).execaCommand
             return await execaCommand(config.commands.compile, {stdio: "inherit"});
         } catch (e) {
             term.error("Stopped testing -- Compilation failed\n");
