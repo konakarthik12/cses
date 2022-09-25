@@ -1,12 +1,13 @@
 {
   "name": "cses-api",
   "version": "4.1.0",
+  "license": "MIT",
+  "homepage": "https://github.com/konakarthik12/cses",
   "exports": "./dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc",
     "dataset": "ts-node src/dataset/dataset.ts",
