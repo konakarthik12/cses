@@ -1,6 +1,6 @@
 {
   "name": "cses-api",
-  "version": "4.1.0",
+  "version": "4.1.2",
   "license": "MIT",
   "homepage": "https://github.com/konakarthik12/cses",
   "exports": "./dist/index.js",
